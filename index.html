@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <i class="fa-solid fa-burst"></i>
+            <span>QueueFlow</span>
+        </div>
+        <i class="fa-solid fa-bars nav-toggle"></i>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </header>
+
+    <main class="hero">
+        <div class="badge-description">
+            <i class="fa-solid fa-circle"></i>
+            <p class="badge">Student Services Office</p>
+        </div>
+
+        <div class="content-description">
+            <h1>Skip the line. <br>Not the <span>service.</span></h1>
+            <p>Join the queue at the Student Services Office from your phone — see your position and wait time in real time.</p>
+        </div>
+
+        <div class="cta-buttons">
+            <button class="btn-primary" onclick="window.location.href='login.html'">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="btn-secondary" onclick="window.location.href='register.html'">I already have an account</button>
+        </div>
+
+        <section class="work-steps">
+            <p class="main-text">HOW IT WORKS</p>
+            <ol class="steps">
+                <li>
+                    <span class="step-num">1</span>
+                    <h3>Create your account</h3>
+                    <p>Sign up as a student or staff member</p>
+                </li>
+                <li>
+                    <span class="step-num">2</span>
+                    <h3>Choose a service</h3>
+                    <p>Pick what you need help with today</p>
+                </li>
+                <li>
+                    <span class="step-num">3</span>
+                    <h3>Track your turn</h3>
+                    <p>Watch your position update live</p>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <script src="js/landing.js"></script>
+</body>
+</html>

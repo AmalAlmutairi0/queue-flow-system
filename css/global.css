@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+    --primary-color: #164dc4;
+    --primary-light: #d5e9fe;
+    --primary-light-bg: #eff6ff;
+    --primary-accent: #0a45a5;
+
+    --bg-main: #f8fafc;
+    --bg-body: #f8fafc;
+    --bg-surface: #ffffff;
+    --header-bg: #ffffff;
+
+    --light-gray-background: #f1f1f1;
+    --gray-color: #a5a3a3;
+
+    --text-main: #0f172a;
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    --nav-text: #334155;
+    --btn-hover:#2863e3;
+    --nav-hover: #2563eb;
+
+    --status-waiting-bg: #fff7ed;
+    --status-waiting-text: #c2410c;
+    --status-active-bg: #dcfce7;
+    --status-active-text: #15803d;
+
+    --warning-color: #f97316;
+    --warning-bg: #fff7ed;
+    --warning-border: #ffedd5;
+
+    --success-color: #16a34a;
+    --success-bg: #f0fdf4;
+    --success-border: #bbf7d0;
+
+    --border-color: #e2e8f0;
+    --danger-color: #dc2626;
+    --danger-bg: #fef2f2;
+    --danger-border: #fca5a5;
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-1md: 14px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    --font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    list-style: none;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    width: 100%;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    background-color: var(--header-bg);
+    padding: var(--space-md) var(--space-lg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.logo-container span {
+    color: var(--primary-color);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo-container i{
+    background-color: var(--primary-light-bg);
+    color: var(--primary-color);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    box-shadow: var(--shadow-card);
+    line-height: 0;
+}
+
+.fa-bars {
+    cursor: pointer;
+    color: var(--border-color);
+}
+
+.fa-bars:hover {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+    width: 100%;
+    display: none;
+}
+
+.nav-links li a {
+    color: var(--nav-text);
+    padding: var(--space-sm) var(--space-md);
+    width: 100%;
+    text-align: center;
+    transition: var(--transition-fast);
+    font-size: var(--font-size-sm);
+}
+
+.nav-links.active {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    display: flex;
+    background-color: var(--header-bg);
+    padding: var(--space-md);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+.nav-links li a:hover {
+    color: var(--nav-hover);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+}
+
+.hidden {
+    display: none !important;
+}

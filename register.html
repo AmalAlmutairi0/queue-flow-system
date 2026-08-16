@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Smart Queue</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <i class="fa-solid fa-burst"></i>
+            <span>QueueFlow</span>
+        </div>
+        <i class="fa-solid fa-bars nav-toggle"></i>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </header>
+
+    <main class="content">
+        <a href="index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back</span>
+        </a>
+
+        <div class="description">
+            <h1>Create Account</h1>
+            <p>Select your account type to get started</p>
+        </div>
+
+        <section class="form-section">
+            <p class="role-label">I am a:</p>
+            <div class="role-selector">
+                <button type="button" class="role-btn active" id="btn-student">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <div class="btn-content">
+                        <h3>Student</h3>
+                        <p>Join queues & track</p>
+                    </div>
+                </button>
+                <button type="button" class="role-btn" id="btn-staff">
+                    <i class="fa-solid fa-id-card"></i>
+                    <div class="btn-content">
+                        <h3>Staff</h3>
+                        <p>Manage queues</p>
+                    </div>
+                </button>
+            </div>
+
+            <form class="auth-form" id="student-form">
+                <div class="input-group">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" placeholder="Fahad Khalid" required>
+                </div>
+                <div class="input-group">
+                    <label for="student-id">Student ID</label>
+                    <input type="text" id="student-id" placeholder="445000000" required>
+                </div>
+                <div class="input-group">
+                    <label for="student-email">University Email</label>
+                    <input type="email" id="student-email" placeholder="student@psu.edu.sa" required>
+                </div>
+                <div class="input-group">
+                    <label for="student-pass">Password</label>
+                    <input type="password" id="student-pass" placeholder="••••••••" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="student-terms" required>
+                    <label for="student-terms">I agree to the Terms & Privacy Policy</label>
+                </div>
+                <button type="submit" class="create-btn">Create Student Account</button>
+            </form>
+
+            <form class="auth-form hidden" id="staff-form">
+                <div class="input-group">
+                    <label for="staff-name">Full Name</label>
+                    <input type="text" id="staff-name" placeholder="Dr. Sarah Ahmed" required>
+                </div>
+                <div class="input-group">
+                    <label for="staff-email">Staff Email</label>
+                    <input type="email" id="staff-email" placeholder="sahmed@ksu.edu.sa" required>
+                </div>
+                <div class="input-group">
+                    <label for="staff-dept">Department</label>
+                    <input type="text" id="staff-dept" placeholder="Academic Advising" required>
+                </div>
+                <div class="input-group">
+                    <label for="staff-pass">Password</label>
+                    <input type="password" id="staff-pass" placeholder="••••••••" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="staff-terms" required>
+                    <label for="staff-terms">I agree to the Terms & Privacy Policy</label>
+                </div>
+                <button type="submit" class="create-btn">Create Staff Account</button>
+            </form>
+
+            <div class="form-footer">
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/register.js"></script>
+</body>
+</html>
