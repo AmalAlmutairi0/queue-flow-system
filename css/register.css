@@ -1,18 +1,17 @@
-
 .content {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-lg);
+    width: 100%;
     padding: var(--space-lg);
 }
 
 .back-link {
+    padding: var(--space-sm);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
-    padding: var(--space-sm);
     transition: 0.3s ease-in-out;
 }
 
@@ -22,8 +21,8 @@
 }
 
 .back-link span {
-    font-weight: 700;
     color: var(--text-muted);
+    font-weight: 700;
 }
 
 .back-link:hover {
@@ -38,11 +37,11 @@
 }
 
 .form-section {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-md);
+    width: 100%;
 }
 
 .role-label {
@@ -66,13 +65,13 @@
 }
 
 .role-btn i {
-    background-color: var(--light-gray-background);
-    color: var(--gray-color);
-    width: 30px;
-    height: 30px;
     display: inline-grid;
     place-items: center;
+    width: 30px;
+    height: 30px;
     border-radius: var(--radius-md);
+    background-color: var(--light-gray-background);
+    color: var(--gray-color);
     transition: 0.3s ease-in-out;
 }
 
@@ -85,8 +84,8 @@
 
 .role-btn:hover i,
 .role-btn.active i {
-    color: var(--primary-color);
     background-color: var(--primary-light);
+    color: var(--primary-color);
 }
 
 .btn-content {
@@ -98,24 +97,24 @@
 }
 
 .btn-content p {
-    font-size: var(--font-size-xs);
     color: var(--text-muted);
+    font-size: var(--font-size-xs);
     white-space: nowrap;
 }
 
 .auth-form {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-md);
+    width: 100%;
 }
 
 .input-group {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    width: 100%;
     padding-top: var(--space-sm);
 }
 
@@ -129,14 +128,14 @@
 }
 
 .input-group input:focus {
-    outline: none;
     border-color: var(--primary-color);
+    outline: none;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .input-group label {
-    font-weight: 600;
     font-size: var(--font-size-sm);
+    font-weight: 600;
 }
 
 .checkbox-group {
@@ -158,19 +157,19 @@
     padding: var(--space-sm);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
     background-color: var(--primary-color);
     color: var(--bg-main);
     font-size: var(--font-size-base);
     font-weight: 600;
     letter-spacing: 0.3px;
+    box-shadow: var(--shadow-card);
     cursor: pointer;
 }
 
 .form-footer {
     width: 100%;
-    text-align: center;
     margin: var(--space-xs) 0px;
+    text-align: center;
 }
 
 .form-footer p {
@@ -187,7 +186,3 @@
 .form-footer a:hover {
     color: var(--nav-text);
 }
-
-/*#staff-form {
-    display: flex !important;
-}*/
