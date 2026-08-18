@@ -24,22 +24,42 @@
     </header>
 
     <main class="hero">
-        <div class="badge-description">
-            <i class="fa-solid fa-circle"></i>
-            <p class="badge">Student Services Office</p>
+
+        <div class="hero-top">
+            <div class="hero-text-content">
+                <div class="badge-description">
+                    <i class="fa-solid fa-circle"></i>
+                    <p class="badge">Student Services Office</p>
+                </div>
+
+                <div class="content-description">
+                    <h1>Skip the line. <br>Not the <span>service.</span></h1>
+                    <p>Skip physical lines - join the Student Services queue and track your status in real time.</p>
+                </div>
+
+                <div class="cta-buttons">
+                    <button class="btn-primary" onclick="window.location.href='register.html'">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn-secondary" onclick="window.location.href='login.html'">Log in</button>
+                </div>
+            </div>
+
+            <div class="ticket-card" id="ticket-preview">
+                <div class="main-info">
+                    <p class="clarify">Live Ticket Preview</p>
+                    <span class="status">Live Demo</span>
+                    <h3 class="card-number">A-101</h3>
+                    <p class="status-info">4 people ahead · Est. wait 14 min</p>
+                </div>
+
+                <div class="serving-now">
+                    <p>Now Serving</p>
+                    <span>A-098</span>
+                </div>
+            </div>
+
         </div>
 
-        <div class="content-description">
-            <h1>Skip the line. <br>Not the <span>service.</span></h1>
-            <p>Join the queue at the Student Services Office from your phone — see your position and wait time in real time.</p>
-        </div>
-
-        <div class="cta-buttons">
-            <button class="btn-primary" onclick="window.location.href='login.html'">Get Started <i class="fa-solid fa-arrow-right"></i></button>
-            <button class="btn-secondary" onclick="window.location.href='register.html'">I already have an account</button>
-        </div>
-
-        <section class="work-steps">
+        <section class="work-steps" id="how-it-works">
             <p class="main-text">HOW IT WORKS</p>
             <ol class="steps">
                 <li>
@@ -59,7 +79,51 @@
                 </li>
             </ol>
         </section>
+
+        <section class="web-description" id="student-services">
+            <h2>Why Student Services uses QueueFlow?</h2>
+
+            <div class="cards-wrapper">
+            <div class="card">
+                <i class="fa-regular fa-clock"></i>
+                <h4 class="title">No more guessing</h4>
+                <p>An accurate estimated wait time instead of standing and wondering.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-user-gear"></i>
+                <h4 class="title">No physical line</h4>
+                <p>Wait wherever you want - class, the library, or the courtyard.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-chart-simple"></i>
+                <h4 class="title">Full staff visibility</h4>
+                <p>Staff see the live queue and manage it from one simple screen.</p>
+            </div>
+            </div>
+        </section>
     </main>
+
+
+    <footer class="web-footer">
+        <div class="content-container">
+        <div class="footer-brand">
+            <div class="logo">
+                <i class="fa-solid fa-burst"></i>
+                <span>QueueFlow</span>
+            </div>
+            <p>Queue and appointment management for <span>Student Services.</span></p>
+        </div>
+        <div class="footer-links">
+            <a href="#">Help Center</a>
+            <a href="#">Contact Support</a>
+        </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 QueueFlow · Princess Nourah University. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="js/landing.js"></script>
 </body>
