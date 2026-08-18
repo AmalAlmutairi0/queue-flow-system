@@ -187,6 +187,117 @@
     display: none;
 }
 
+.ticket-card {
+    flex-direction: column;
+    width: 380px;
+    padding: var(--space-lg);
+    background-color: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    color: var(--bg-main);
+    text-align: left;
+}
+
+.ticket-card .main-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-card .main-info .clarify {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.ticket-card .main-info .status {
+    align-self: flex-end;
+    margin-top: -20px;
+    padding: var(--space-sm) var(--space-1md);
+    background-color: var(--background-status);
+    color: var(--text-muted);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.ticket-card .card-number {
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin: var(--space-md) 0 var(--space-sm) 0;
+    color: var(--bg-main);
+}
+
+.ticket-card .status-info {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    padding-bottom: var(--space-md);
+}
+
+.ticket-card .serving-now {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    background-color: var(--background-status);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.ticket-card .serving-now span {
+    font-weight: 700;
+    color: var(--bg-main);
+    letter-spacing: 1px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    flex: 1;
+    padding: var(--space-lg);
+    background-color: var(--background-card, #ffffff);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+}
+
+.card i {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--space-xs);
+    border-radius: var(--radius-md);
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    font-size: var(--font-size-xl);
+}
+
+.card .title {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--bg-main);
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.card p {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
 .web-footer {
     flex-direction: column;
     gap: var(--space-md);
@@ -281,6 +392,7 @@
 }
 
 @media screen and (min-width: 768px) {
+    .ticket-card,
     .web-footer {
         display: flex;
     }
@@ -334,71 +446,6 @@
     .cta-buttons button {
         width: auto;
         padding: var(--space-1md) var(--space-lg);
-    }
-
-    .ticket-card {
-        display: flex;
-        flex-direction: column;
-        width: 380px;
-        padding: var(--space-lg);
-        background-color: var(--background-card);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-card);
-        color: var(--bg-main);
-        text-align: left;
-    }
-
-    .ticket-card .main-info {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .ticket-card .main-info .clarify {
-        font-size: var(--font-size-sm);
-        color: var(--text-muted);
-    }
-
-    .ticket-card .main-info .status {
-        align-self: flex-end;
-        margin-top: -20px;
-        padding: var(--space-sm) var(--space-1md);
-        background-color: var(--background-status);
-        color: var(--text-muted);
-        border-radius: var(--radius-md);
-        font-size: var(--font-size-xs);
-        font-weight: 600;
-    }
-
-    .ticket-card .card-number {
-        font-size: 3.2rem;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        margin: var(--space-md) 0 var(--space-sm) 0;
-        color: var(--bg-main);
-    }
-
-    .ticket-card .status-info {
-        font-size: var(--font-size-sm);
-        color: var(--text-muted);
-        padding-bottom: var(--space-md);
-    }
-
-    .ticket-card .serving-now {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: var(--space-md);
-        background-color: var(--background-status);
-        border-radius: var(--radius-md);
-        font-size: var(--font-size-sm);
-        color: var(--text-muted);
-    }
-
-    .ticket-card .serving-now span {
-        font-weight: 700;
-        color: var(--bg-main);
-        letter-spacing: 1px;
     }
 
     .steps {
@@ -456,52 +503,5 @@
         align-items: stretch;
         gap: var(--space-lg);
         padding: var(--space-md) 0;
-    }
-
-    .card {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-sm);
-        flex: 1;
-        padding: var(--space-lg);
-        background-color: var(--background-card, #ffffff);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-card);
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-    }
-
-    .card i {
-        display: grid;
-        place-items: center;
-        width: 44px;
-        height: 44px;
-        margin-bottom: var(--space-xs);
-        border-radius: var(--radius-md);
-        background-color: var(--primary-light);
-        color: var(--primary-color);
-        font-size: var(--font-size-xl);
-    }
-
-    .card .title {
-        font-size: var(--font-size-md);
-        font-weight: 500;
-        color: var(--bg-main);
-        letter-spacing: 0.5px;
-        margin: 0;
-    }
-
-    .card p {
-        font-size: var(--font-size-sm);
-        color: var(--text-muted);
-        line-height: 1.5;
-        margin: 0;
     }
 }
