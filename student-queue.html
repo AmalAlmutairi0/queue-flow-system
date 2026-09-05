@@ -18,152 +18,195 @@
 
         <i class="fa-solid fa-bars nav-toggle"></i>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="student.html">Student Queue</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <li>
+                <button id="logout-btn" class="nav-logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </button>
+            </li>
         </ul>
     </header>
 
-    <main class="join-queue" id="services-screen">
-        <div class="join-description">
-            <h2>Available Services</h2>
-            <p>Select a service to join the virtual queue</p>
-        </div>
+    <div class="app-layout">
+        <aside class="stepper-sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-burst"></i>
+                <span>QueueFlow</span>
+            </div>
 
-        <div class="service-card" data-service="Academic Advising" data-prefix="A">
-            <div class="content">
-                <div class="text-wrapper">
-                    <div class="title-content">
-                        <i class="fa-solid fa-user-graduate"></i>
-                        <h3>Academic Advising</h3>
+            <ol class="stepper-list">
+                <li class="step-item active" id="step-node-1">
+                    <span class="step-num">1</span>
+                    <div class="step-text">
+                        <h4>Select a service</h4>
+                        <p>Choose what you need help with today</p>
                     </div>
-                    <p>Course registration & general guidance</p>
-                </div>
-            </div>
-            <div class="waiting">
-                <span class="person-number">4 waiting</span>
-                <span class="waiting-time">~20 min wait</span>
-            </div>
-        </div>
-
-        <div class="service-card" data-service="Financial Aid" data-prefix="F">
-            <div class="content">
-                <div class="text-wrapper">
-                    <div class="title-content">
-                        <i class="fa-solid fa-wallet"></i>
-                        <h3>Financial Aid</h3>
+                </li>
+                <li class="step-item" id="step-node-2">
+                    <span class="step-num">2</span>
+                    <div class="step-text">
+                        <h4>Confirmation</h4>
+                        <p>Get your ticket number instantly</p>
                     </div>
-                    <p>Scholarships & payment inquiries</p>
-                </div>
-            </div>
-            <div class="waiting">
-                <span class="person-number">2 waiting</span>
-                <span class="waiting-time">~10 min wait</span>
-            </div>
-        </div>
-
-        <div class="service-card" data-service="IT Support" data-prefix="I">
-            <div class="content">
-                <div class="text-wrapper">
-                    <div class="title-content">
-                        <i class="fa-solid fa-laptop-code"></i>
-                        <h3>IT Support</h3>
+                </li>
+                <li class="step-item" id="step-node-3">
+                    <span class="step-num">3</span>
+                    <div class="step-text">
+                        <h4>Track your ticket</h4>
+                        <p>Watch your position update live</p>
                     </div>
-                    <p>Portal access & Wi-Fi issues</p>
-                </div>
-            </div>
-            <div class="waiting">
-                <span class="person-number">1 waiting</span>
-                <span class="waiting-time">~5 min wait</span>
-            </div>
-        </div>
+                </li>
+            </ol>
 
-        <div class="service-card" data-service="Records & Transcripts" data-prefix="R">
-            <div class="content">
-                <div class="text-wrapper">
-                    <div class="title-content">
-                        <i class="fa-solid fa-file-lines"></i>
-                        <h3>Records & Transcripts</h3>
+            <div class="mini-ticket-card" id="sidebar-ticket">
+                <span class="mini-label">YOUR TICKET</span>
+                <span class="status-pill" id="mini-status">Not started</span>
+                <h3 id="mini-ticket-num">—</h3>
+                <p id="mini-service-name">Pick a service to begin</p>
+            </div>
+        </aside>
+
+        <main class="join-queue" id="services-screen">
+            <div class="join-description">
+                <h2>Available Services</h2>
+                <p>Select a service to join the virtual queue</p>
+            </div>
+
+            <div class="service-card" data-service="Academic Advising" data-prefix="A">
+                <div class="content">
+                    <div class="text-wrapper">
+                        <div class="title-content">
+                            <i class="fa-solid fa-user-graduate"></i>
+                            <h3>Academic Advising</h3>
+                        </div>
+                        <p>Course registration & general guidance</p>
                     </div>
-                    <p>Official documents & grades</p>
+                </div>
+                <div class="waiting">
+                    <span class="person-number">4 waiting</span>
+                    <span class="waiting-time">~20 min wait</span>
                 </div>
             </div>
-            <div class="waiting">
-                <span class="person-number">6 waiting</span>
-                <span class="waiting-time">~30 min wait</span>
-            </div>
-        </div>
 
-        <div class="btn-container">
-            <button type="button" id="join-btn">Join Queue</button>
-            <p class="btn-note">Select a service above to join the queue</p>
-        </div>
-    </main>
-
-    <section class="confirmation hidden" id="confirmation-screen">
-        <div class="confirmation-card">
-            <div class="confirmation-title">
-                <i class="fa-solid fa-check"></i>
-                <h2>You're in Line!</h2>
-                <p>Your ticket has been generated successfully</p>
-            </div>
-
-            <div class="summary-details">
-                <h1 class="ticket-number-display" id="conf-ticket-num">A-012</h1>
-                <p class="service-name-display" id="conf-service-name">Academic Advising</p>
-            </div>
-
-            <button class="status-btn" id="view-status-btn">View Queue Status</button>
-        </div>
-    </section>
-
-    <section class="ticket hidden" id="ticket-screen">
-        <button class="back-btn" id="back-to-services-btn">
-            <i class="fa-solid fa-arrow-left"></i> Leave / Back
-        </button>
-
-        <div class="ticket-card">
-            <div class="main-info">
-                <span class="label">YOUR TICKET NUMBER</span>
-                <h1 class="ticket-number-display" id="live-ticket-num">A-012</h1>
-            </div>
-
-            <div class="ticket-status-card">
-                <div class="stat-box">
-                    <span class="stat-value" id="live-ahead-count">3</span>
-                    <span class="stat-label">People Ahead of You</span>
-                </div>
-
-                <div class="wait-time-wrapper">
-                    <div class="progress-segments">
-                        <div class="segment active"></div>
-                        <div class="segment active"></div>
-                        <div class="segment"></div>
-                        <div class="segment"></div>
-                        <div class="segment"></div>
+            <div class="service-card" data-service="Financial Aid" data-prefix="F">
+                <div class="content">
+                    <div class="text-wrapper">
+                        <div class="title-content">
+                            <i class="fa-solid fa-wallet"></i>
+                            <h3>Financial Aid</h3>
+                        </div>
+                        <p>Scholarships & payment inquiries</p>
                     </div>
-                    <span class="wait-time-display" id="live-wait-time">Estimated wait: ~15 mins</span>
+                </div>
+                <div class="waiting">
+                    <span class="person-number">2 waiting</span>
+                    <span class="waiting-time">~10 min wait</span>
                 </div>
             </div>
 
-            <div class="all-info">
-                <div class="info-item">
-                    <span class="label">Service</span>
-                    <span class="value" id="live-service-name">Academic Advising</span>
+            <div class="service-card" data-service="IT Support" data-prefix="I">
+                <div class="content">
+                    <div class="text-wrapper">
+                        <div class="title-content">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <h3>IT Support</h3>
+                        </div>
+                        <p>Portal access & Wi-Fi issues</p>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <span class="label">Now Serving</span>
-                    <span class="value serving-ticket-display" id="live-now-serving">A-009</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Status</span>
-                    <span class="value status-badge" id="live-status-text">Waiting</span>
+                <div class="waiting">
+                    <span class="person-number">1 waiting</span>
+                    <span class="waiting-time">~5 min wait</span>
                 </div>
             </div>
 
-            <button type="button" class="cancel-btn" id="cancel-ticket-btn">Cancel My Ticket</button>
-        </div>
-    </section>
+            <div class="service-card" data-service="Records & Transcripts" data-prefix="R">
+                <div class="content">
+                    <div class="text-wrapper">
+                        <div class="title-content">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <h3>Records & Transcripts</h3>
+                        </div>
+                        <p>Official documents & grades</p>
+                    </div>
+                </div>
+                <div class="waiting">
+                    <span class="person-number">6 waiting</span>
+                    <span class="waiting-time">~30 min wait</span>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button type="button" id="join-btn">Join Queue</button>
+                <p class="btn-note">Select a service above to join the queue</p>
+            </div>
+        </main>
+
+        <section class="confirmation hidden" id="confirmation-screen">
+            <div class="confirmation-card">
+                <div class="confirmation-title">
+                    <i class="fa-solid fa-check"></i>
+                    <h2>You're in Line!</h2>
+                    <p>Your ticket has been generated successfully</p>
+                </div>
+
+                <div class="summary-details">
+                    <h1 class="ticket-number-display" id="conf-ticket-num">A-012</h1>
+                    <p class="service-name-display" id="conf-service-name">Academic Advising</p>
+                </div>
+
+                <button class="status-btn" id="view-status-btn">View Queue Status</button>
+            </div>
+        </section>
+
+        <section class="ticket hidden" id="ticket-screen">
+            <button class="back-btn" id="back-to-services-btn">
+                <i class="fa-solid fa-arrow-left"></i> Leave / Back
+            </button>
+
+            <div class="ticket-card">
+                <div class="main-info">
+                    <span class="label">YOUR TICKET NUMBER</span>
+                    <h1 class="ticket-number-display" id="live-ticket-num">A-012</h1>
+                </div>
+
+                <div class="ticket-status-card">
+                    <div class="stat-box">
+                        <span class="stat-value" id="live-ahead-count">3</span>
+                        <span class="stat-label">People Ahead of You</span>
+                    </div>
+
+                    <div class="wait-time-wrapper">
+                        <div class="progress-segments">
+                            <div class="segment active"></div>
+                            <div class="segment active"></div>
+                            <div class="segment"></div>
+                            <div class="segment"></div>
+                            <div class="segment"></div>
+                        </div>
+                        <span class="wait-time-display" id="live-wait-time">Estimated wait: ~15 mins</span>
+                    </div>
+                </div>
+
+                <div class="all-info">
+                    <div class="info-item">
+                        <span class="label">Service</span>
+                        <span class="value" id="live-service-name">Academic Advising</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Now Serving</span>
+                        <span class="value serving-ticket-display" id="live-now-serving">A-009</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Status</span>
+                        <span class="value status-badge" id="live-status-text">Waiting</span>
+                    </div>
+                </div>
+
+                <button type="button" class="cancel-btn" id="cancel-ticket-btn">Cancel My Ticket</button>
+            </div>
+        </section>
+    </div>
 
     <div class="modal-overlay" id="cancel-modal">
         <div class="bottom-sheet">
@@ -177,6 +220,22 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="notification-modal">
+        <div class="bottom-sheet notification-sheet">
+            <div class="sheet-handle"></div>
+            <div class="notification-icon">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <h3 class="modal-title text-center">It's Your Turn!</h3>
+            <p class="modal-description text-center">Your turn has arrived! Please proceed to the office.</p>
+            <div class="modal-actions">
+                <button class="status-btn" id="modal-dismiss-btn">Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/queue-data.js"></script>
+    <script src="js/auth-utils.js"></script>
     <script src="js/student.js"></script>
 </body>
 </html>

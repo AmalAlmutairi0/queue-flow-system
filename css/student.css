@@ -1,3 +1,7 @@
+.stepper-sidebar {
+    display: none;
+}
+
 .join-queue {
     display: flex;
     flex-direction: column;
@@ -37,6 +41,11 @@
 
 .service-card:hover {
     background-color: rgba(0, 0, 235, 0.08);
+}
+
+.service-card.selected {
+    background-color: rgba(0, 0, 235, 0.12);
+    border-color: var(--primary-color, #0000eb);
 }
 
 .text-wrapper {
@@ -381,10 +390,10 @@
 .cancel-btn {
     width: 100%;
     padding: var(--space-md);
-    border: 1px solid var(--danger-border, #fca5a5);
+    border: 1px solid var(--danger-border);
     border-radius: var(--radius-md);
     background-color: transparent;
-    color: var(--danger-color, #dc2626);
+    color: var(--danger-color);
     font-weight: 600;
     cursor: pointer;
     transition: 0.4s ease-in-out;
@@ -400,18 +409,19 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: flex-end;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
 
 .modal-overlay.active {
+    display: flex;
     opacity: 1;
     pointer-events: auto;
 }
@@ -469,19 +479,194 @@
 .modal-actions button {
     flex: 1;
     padding: var(--space-md);
-    border-radius: var(--radius-md, 12px);
+    border-radius: var(--radius-md, 8px);
     font-size: var(--font-size-sm, 0.875rem);
     font-weight: 600;
     cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-secondary {
+    border: 1px solid var(--border-color, #e2e8f0);
+    background-color: var(--bg-surface, #ffffff);
+    color: var(--text-main, #0f172a);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-light-bg, #f8fafc);
 }
 
 .btn-danger {
     border: none;
-    background-color: var(--danger-color, #dc2626);
+    background-color: var(--danger-color, #ef4444);
     color: #ffffff;
 }
 
-.confirmation.hidden,
-.ticket.hidden {
-    display: flex !important;
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--sidebar-text-color);
+}
+
+.stepper-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    opacity: 0.5;
+    transition: 0.3s ease;
+}
+
+.step-item.active {
+    opacity: 1;
+}
+
+.step-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--sidebar-text-color);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+}
+
+.step-item.active .step-num {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.step-text h4 {
+    margin: 0;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--bg-main);
+}
+
+.step-text p {
+    margin: 4px 0 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.mini-ticket-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--background-card);
+}
+
+.mini-label {
+    font-size: var(--font-size-xs, 0.75rem);
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.status-pill {
+    align-self: flex-start;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background-color: var(--background-status);
+    color: var(--bg-main);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.mini-ticket-card h3 {
+    margin: 4px 0;
+    font-size: var(--font-size-xl);
+    color: var(--bg-main);
+}
+
+.mini-ticket-card p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.notification-sheet {
+    text-align: center;
+}
+
+.notification-icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-xs) auto;
+    border-radius: 50%;
+    background-color: var(--primary-light-bg, #eff6ff);
+    color: var(--primary-color, #0000eb);
+    font-size: 1.5rem;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+@media screen and (min-width: 768px) {
+    .app-layout {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .stepper-sidebar {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 320px;
+        flex-shrink: 0;
+        padding: var(--space-xl);
+        background: linear-gradient(180deg, var(--sidebar-bg-start) 0%, var(--sidebar-bg-end) 100%);
+        color: var(--sidebar-text-color);
+    }
+
+    .join-queue,
+    .confirmation,
+    .ticket {
+        flex: 1;
+        justify-content: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: var(--space-xl);
+    }
+
+    .modal-overlay {
+        align-items: center;
+    }
+
+    .bottom-sheet {
+        border-radius: var(--radius-xl);
+        transform: scale(0.9);
+    }
+
+    .modal-overlay.active .bottom-sheet {
+        transform: scale(1);
+    }
+
+    #notification-modal .bottom-sheet {
+        max-width: 400px;
+        border-radius: var(--radius-xl, 24px);
+    }
 }

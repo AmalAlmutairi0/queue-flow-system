@@ -1,0 +1,289 @@
+.staff-sidebar {
+    display: none;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+}
+
+.dashboard-header p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.stats-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: 100%;
+}
+
+.stat-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--primary-light-bg);
+}
+
+.stat-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--primary-accent);
+}
+
+.serving-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+}
+
+.serving-info .label {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.serving-info h3 {
+    margin-top: 4px;
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+}
+
+.call-next-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.call-next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.queue-overview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-surface);
+}
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.queue-header h3 {
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+}
+
+.queue-count {
+    padding: 2px var(--space-sm);
+    border-radius: var(--radius-sm);
+    background-color: var(--primary-light-bg);
+    color: var(--primary-accent);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+}
+
+.queue-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.queue-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-main);
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ticket-id {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.service-type {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.wait-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+}
+
+/* Sidebar base styling (shown at desktop breakpoint below) */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--sidebar-text-color);
+}
+
+.profile-summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: var(--space-xl) 0;
+}
+
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--sidebar-text-color);
+    font-size: var(--font-size-base);
+}
+
+.profile-text h4 {
+    font-size: var(--font-size-sm);
+    color: var(--sidebar-text-color);
+}
+
+.profile-text p {
+    margin-top: 2px;
+    font-size: var(--font-size-xs);
+    color: var(--sidebar-text-muted);
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    list-style: none;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    color: var(--sidebar-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.nav-item.active a,
+.nav-item a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.empty-queue {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #6c757d;
+    font-size: 0.95rem;
+    font-weight: 500;
+    background-color: #f8f9fa;
+    border: 1px dashed #dee2e6;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    list-style: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .app-layout {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .staff-sidebar {
+        display: flex;
+        flex-direction: column;
+        width: 260px;
+        flex-shrink: 0;
+        padding: var(--space-xl);
+        background: linear-gradient(180deg, var(--sidebar-bg-start) 0%, var(--sidebar-bg-end) 100%);
+        color: var(--sidebar-text-color);
+    }
+
+    .dashboard-content {
+        flex: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: var(--space-xl);
+    }
+
+    .stats-row {
+        flex-direction: row;
+    }
+
+    .stat-card {
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .serving-card {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .call-next-btn {
+        width: auto;
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    .queue-item {
+        padding: var(--space-md);
+    }
+}

@@ -22,6 +22,11 @@
     --text-muted: #64748b;
     --nav-text: #334155;
     --btn-hover:#2863e3;
+
+    --sidebar-bg-start: #081226;
+    --sidebar-bg-end: #173262;
+    --sidebar-text-color: #ffffff;
+    --sidebar-text-muted: #94a3b8;
     --nav-hover: #2563eb;
 
     --status-waiting-bg: #fff7ed;
@@ -48,6 +53,7 @@
     --space-md: 16px;
     --space-lg: 24px;
     --space-xl: 32px;
+    --space-2xl: 48px;
 
     --radius-sm: 6px;
     --radius-md: 12px;
@@ -71,23 +77,25 @@
     --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
-* {
-    box-sizing: border-box;
+*, *::before, *::after {
     margin: 0;
     padding: 0;
-    list-style: none;
+    box-sizing: border-box;
     text-decoration: none;
-    scroll-behavior: smooth;
+    list-style: none;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     min-height: 100vh;
     background-color: var(--bg-main);
     color: var(--text-primary);
     font-family: var(--font-family);
+    overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -191,7 +199,6 @@ main > section + section {
     text-align: center;
 }
 
-
 .nav-links li a {
     display: block;
     width: 100%;
@@ -201,7 +208,6 @@ main > section + section {
     font-weight: 600;
     transition: var(--transition-fast);
 }
-
 
 .nav-links.active {
     position: absolute;
@@ -220,6 +226,42 @@ main > section + section {
     color: var(--primary-color);
 }
 
+.nav-logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--danger-bg);
+    color: var(--danger-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-fast);
+}
+
+.nav-logout-btn i {
+    width: auto !important;
+    font-size: var(--font-size-sm);
+    color: var(--danger-color);
+}
+
+.nav-logout-btn:hover {
+    background-color: var(--danger-color);
+    color: #ffffff;
+    border-color: var(--danger-color);
+    transform: translateY(-1px);
+}
+
+.nav-logout-btn:hover i {
+    color: #ffffff;
+}
+
 .hidden {
     display: none !important;
 }
@@ -229,7 +271,6 @@ main > section + section {
     .fa-bars {
         display: none !important;
     }
-
 
     .nav-links {
         display: flex !important;
@@ -247,5 +288,10 @@ main > section + section {
 
     .nav-links li a {
         width: auto !important;
+    }
+
+    .nav-logout-btn {
+        width: auto;
+        padding: 6px var(--space-md);
     }
 }

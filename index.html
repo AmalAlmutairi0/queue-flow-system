@@ -17,9 +17,8 @@
         </div>
         <i class="fa-solid fa-bars nav-toggle"></i>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#student-services">Services</a></li>
         </ul>
     </header>
 
@@ -33,8 +32,8 @@
                 </div>
 
                 <div class="content-description">
-                    <h1>Skip the line. <br>Not the <span>service.</span></h1>
-                    <p>Skip physical lines - join the Student Services queue and track your status in real time.</p>
+                    <h1>Digital Queue Management for <span class="break-text">Student Services.</span></h1>
+                    <p>Join student service queues remotely and monitor your wait time in real time.</p>
                 </div>
 
                 <div class="cta-buttons">
@@ -46,7 +45,7 @@
             <div class="ticket-card" id="ticket-preview">
                 <div class="main-info">
                     <p class="clarify">Live Ticket Preview</p>
-                    <span class="status">Live Demo</span>
+                    <span class="status">Live Queue Status</span>
                     <h3 class="card-number">A-101</h3>
                     <p class="status-info">4 people ahead · Est. wait 14 min</p>
                 </div>
@@ -64,67 +63,79 @@
             <ol class="steps">
                 <li>
                     <span class="step-num">1</span>
-                    <h3>Create your account</h3>
-                    <p>Sign up as a student or staff member</p>
+                    <h3>Create an Account</h3>
+                    <p>Register using your university credentials.</p>
                 </li>
                 <li>
                     <span class="step-num">2</span>
-                    <h3>Choose a service</h3>
-                    <p>Pick what you need help with today</p>
+                    <h3>Select a Service</h3>
+                    <p>Choose the required academic or administrative service.</p>
                 </li>
                 <li>
                     <span class="step-num">3</span>
-                    <h3>Track your turn</h3>
-                    <p>Watch your position update live</p>
+                    <h3>Monitor Your Status</h3>
+                    <p>Track your live position in the queue.</p>
                 </li>
             </ol>
         </section>
 
         <section class="web-description" id="student-services">
-            <h2>Why Student Services uses QueueFlow?</h2>
+            <h2>Designed for Efficient Campus Operations</h2>
 
             <div class="cards-wrapper">
-            <div class="card">
-                <i class="fa-regular fa-clock"></i>
-                <h4 class="title">No more guessing</h4>
-                <p>An accurate estimated wait time instead of standing and wondering.</p>
-            </div>
+                <div class="card">
+                    <i class="fa-regular fa-clock"></i>
+                    <h4 class="title">Accurate Wait Estimates</h4>
+                    <p>View clear, real-time wait duration estimates before arriving.</p>
+                </div>
 
-            <div class="card">
-                <i class="fa-solid fa-user-gear"></i>
-                <h4 class="title">No physical line</h4>
-                <p>Wait wherever you want - class, the library, or the courtyard.</p>
-            </div>
+                <div class="card">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <h4 class="title">Virtual Queueing</h4>
+                    <p>Wait comfortably from anywhere on campus until your turn is called.</p>
+                </div>
 
-            <div class="card">
-                <i class="fa-solid fa-chart-simple"></i>
-                <h4 class="title">Full staff visibility</h4>
-                <p>Staff see the live queue and manage it from one simple screen.</p>
-            </div>
+                <div class="card">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <h4 class="title">Streamlined Staff Operations</h4>
+                    <p>Enables staff members to monitor and manage student flow efficiently.</p>
+                </div>
             </div>
         </section>
     </main>
 
-
     <footer class="web-footer">
         <div class="content-container">
-        <div class="footer-brand">
-            <div class="logo">
-                <i class="fa-solid fa-burst"></i>
-                <span>QueueFlow</span>
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fa-solid fa-burst"></i>
+                    <span>QueueFlow</span>
+                </div>
+                <p>Queue and appointment management for <span>Student Services.</span></p>
             </div>
-            <p>Queue and appointment management for <span>Student Services.</span></p>
-        </div>
-        <div class="footer-links">
-            <a href="#">Help Center</a>
-            <a href="#">Contact Support</a>
-        </div>
+            <div class="footer-links">
+                <a href="#">Help Center</a>
+                <a href="#">Contact Support</a>
+            </div>
         </div>
         <div class="footer-bottom">
             <p>© 2026 QueueFlow · Princess Nourah University. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="js/landing.js"></script>
+    <script src="js/auth-utils.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+            });
+        }
+    });
+    </script>
+
 </body>
 </html>

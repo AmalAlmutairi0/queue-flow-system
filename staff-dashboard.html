@@ -3,41 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/staff.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <article class="staff" id="staff-section">
-            <section class="staff-dashboard">
-                <h2>Staff Control Dashboard</h2>
 
-                <div class="now-serving-box">
-                    <span class="label">Currently Serving</span>
-                    <h2 class="staff-current-ticket">A-098</h2>
-                    <p class="staff-current-service">Schedule Change</p>
-                </div>
+    <header class="header">
+        <div class="logo-container">
+            <i class="fa-solid fa-burst"></i>
+            <span>QueueFlow</span>
+        </div>
 
-                <button id="call-next-btn" class="call-next-btn">
-                    <i class="fa-solid fa-bullhorn"></i> Call Next Student
+        <i class="fa-solid fa-bars nav-toggle"></i>
+        <ul class="nav-links">
+            <li>
+                <button id="logout-btn" class="nav-logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
                 </button>
+            </li>
+        </ul>
+    </header>
 
-                <div class="waiting-queue-overview">
-                    <h3>Waiting Queue (<span class="queue-count">3</span>)</h3>
-                    <ul class="queue-list">
-                        <li class="queue-item">
-                            <span class="ticket-id">A-099</span>
-                            <span class="service-type">Certificate</span>
-                        </li>
-                        <li class="queue-item">
-                            <span class="ticket-id">A-100</span>
-                            <span class="service-type">Academic Advising</span>
-                        </li>
-                        <li class="queue-item">
-                            <span class="ticket-id">A-101</span>
-                            <span class="service-type">Schedule Change</span>
-                        </li>
-                    </ul>
+    <div class="app-layout">
+        <aside class="staff-sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-burst"></i>
+                <span>QueueFlow</span>
+            </div>
+
+            <div class="profile-summary">
+                <div class="profile-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="profile-text">
+                    <h4>Staff Member</h4>
+                    <p>Student Services</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="staff-dashboard.html">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="dashboard-content" id="dashboard-screen">
+            <div class="dashboard-header">
+                <h2>Welcome back, Staff</h2>
+                <p>Today's Overview</p>
+            </div>
+
+            <section class="stats-row">
+                <div class="stat-card">
+                    <span class="stat-title">Currently Serving</span>
+                    <span class="stat-value" id="stat-serving">A-098</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Waiting Queue</span>
+                    <span class="stat-value" id="stat-waiting">3</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Served Today</span>
+                    <span class="stat-value" id="stat-served">24</span>
                 </div>
             </section>
-        </article>
+
+            <section class="serving-card">
+                <div class="serving-info">
+                    <span class="label">Current Service</span>
+                    <h3 id="current-service-name">Schedule Change</h3>
+                </div>
+                <button type="button" id="call-next-btn" class="call-next-btn">
+                    <i class="fa-solid fa-bullhorn"></i> Call Next Student
+                </button>
+            </section>
+
+            <section class="queue-overview">
+                <div class="queue-header">
+                    <h3>Waiting Queue</h3>
+                    <span class="queue-count" id="queue-count">3 Waiting</span>
+                </div>
+
+                <ul class="queue-list" id="queue-list">
+                    <li class="queue-item">
+                        <div class="ticket-info">
+                            <span class="ticket-id">A-099</span>
+                            <span class="service-type">Certificate</span>
+                        </div>
+                        <span class="wait-time"><i class="fa-regular fa-clock"></i> 5m</span>
+                    </li>
+                    <li class="queue-item">
+                        <div class="ticket-info">
+                            <span class="ticket-id">A-100</span>
+                            <span class="service-type">Academic Advising</span>
+                        </div>
+                        <span class="wait-time"><i class="fa-regular fa-clock"></i> 12m</span>
+                    </li>
+                    <li class="queue-item">
+                        <div class="ticket-info">
+                            <span class="ticket-id">A-101</span>
+                            <span class="service-type">Schedule Change</span>
+                        </div>
+                        <span class="wait-time"><i class="fa-regular fa-clock"></i> 18m</span>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/auth-utils.js"></script>
+    <script src="js/queue-data.js"></script>
+    <script src="js/staff.js"></script>
 </body>
 </html>

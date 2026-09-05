@@ -18,64 +18,78 @@
         <i class="fa-solid fa-bars nav-toggle"></i>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="login.html">Login</a></li>
             <li><a href="register.html">Register</a></li>
         </ul>
     </header>
 
-    <main class="content">
-        <a href="index.html" class="back-link">
-            <i class="fa-solid fa-arrow-left"></i>
-            <span>Back</span>
-        </a>
-
-        <div class="description">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <h1>Welcome Back</h1>
-            <p>Select your portal to log in to Queue Flow System</p>
-        </div>
-
-        <section class="form-section">
-            <p class="role-label">Login as:</p>
-            <div class="role-selector">
-                <button type="button" class="role-btn active" id="btn-student">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <h3>Student</h3>
-                </button>
-                <button type="button" class="role-btn" id="btn-staff">
-                    <i class="fa-solid fa-id-card"></i>
-                    <h3>Staff</h3>
-                </button>
+    <div class="login-container">
+        <aside class="login-sidebar">
+            <div class="logo-container">
+                <i class="fa-solid fa-burst"></i>
+                <span>QueueFlow</span>
             </div>
 
-            <form class="auth-form" id="login-form">
-                <div class="input-group">
-                    <label for="email" id="email-label">Student Email / ID</label>
-                    <input type="text" id="email" placeholder="student@psu.edu.sa" required>
+            <div class="hero-text-box">
+                <h1>Welcome back to QueueFlow.</h1>
+                <p>Log in to check your live ticket status or access line management controls.</p>
+            </div>
+        </aside>
+
+        <main class="login-form-wrapper">
+            <a href="index.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back</span>
+            </a>
+
+            <div class="description">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <h2>Welcome Back</h2>
+                <p>Sign in to track your queue status or manage system activities.</p>
+            </div>
+
+            <section class="form-section">
+                <p class="role-label">Login as:</p>
+                <div class="role-selector">
+                    <button type="button" class="role-btn active" id="btn-student">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <h3>Student</h3>
+                    </button>
+                    <button type="button" class="role-btn" id="btn-staff">
+                        <i class="fa-solid fa-id-card"></i>
+                        <h3>Staff</h3>
+                    </button>
                 </div>
 
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
-                </div>
-
-                <div class="form-options">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="remember">
-                        <label for="remember">Remember me</label>
+                <form class="auth-form" id="login-form">
+                    <div class="input-group">
+                        <label for="email" id="email-label">Student Email</label>
+                        <input type="text" id="email" placeholder="student@psu.edu.sa" required>
                     </div>
-                    <a href="#" class="forgot-pass-link">Forgot Password?</a>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-options">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-pass-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">Log In</button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="register.html">Sign Up</a></p>
                 </div>
+            </section>
+        </main>
+    </div>
 
-                <button type="submit" class="create-btn">Log In</button>
-            </form>
-
-            <div class="form-footer">
-                <p>Don't have an account? <a href="register.html">Sign Up</a></p>
-            </div>
-        </section>
-    </main>
-
+    <script src="js/auth-utils.js"></script>
     <script src="js/login.js"></script>
 </body>
 </html>
