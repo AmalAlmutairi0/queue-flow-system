@@ -31,7 +31,10 @@ A dynamic, full-stack web application designed to streamline student customer fl
 * **State & Persistence:** LocalStorage API, RESTful APIs, Fetch API.
 
 ---
+
 ## 📂 Project Architecture
+
+```text
 ├── css/
 │   ├── global.css          # Global variables, typography, and base layout
 │   ├── landing.css         # Styling for the main landing page
@@ -59,14 +62,12 @@ A dynamic, full-stack web application designed to streamline student customer fl
 ├── staff-dashboard.html    # Staff management dashboard
 └── student-queue.html      # Student queue interactive portal
 
-
 🚀 Getting Started
-Clone the repository:
-
-Bash
+1. Clone the repository:
 git clone [https://github.com/AmalAlmutairi0/queue-flow-system.git](https://github.com/AmalAlmutairi0/queue-flow-system.git)
-Open the project:
-Simply launch student-queue.html in your browser (or use a Live Server extension in VS Code).
 
-Backend Setup:
-Ensure your API server is running to support getTickets(), addTicketToBackend(), and counter synchronization endpoints.
+2. Open the project:
+Simply launch student-queue.html or index.html in your browser (or use a Live Server extension in VS Code).
+
+3. Backend Setup:
+Ensure your API server inside the server/ folder is running to support getTickets(), addTicketToBackend(), and counter synchronization endpoints.
