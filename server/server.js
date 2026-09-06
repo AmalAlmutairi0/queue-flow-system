@@ -14,7 +14,6 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB Connected Successfully'))
   .catch((err) => console.error('MongoDB Connection Error:', err));
 
-// 1. جلب التذاكر
 app.get('/api/queue', async (req, res) => {
   try {
     const tickets = await Ticket.find().sort({ createdAt: 1 });
@@ -24,7 +23,6 @@ app.get('/api/queue', async (req, res) => {
   }
 });
 
-// 2. إنشاء تذكرة
 app.post('/api/queue/ticket', async (req, res) => {
   try {
     const newTicket = new Ticket({
@@ -40,7 +38,6 @@ app.post('/api/queue/ticket', async (req, res) => {
   }
 });
 
-// 3. تحديث حالة التذكرة
 app.patch('/api/queue/ticket/:id', async (req, res) => {
   try {
     const updatedTicket = await Ticket.findByIdAndUpdate(
