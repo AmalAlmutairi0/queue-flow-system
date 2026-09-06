@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
 
     const navToggle = document.querySelector(".nav-toggle");
     const navLinks = document.querySelector(".nav-links");
@@ -30,58 +30,43 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (callNextBtn) {
-        callNextBtn.addEventListener("click", () => {
-            let ticketData = getTickets();
-            let current = ticketData.find(ticket => ticket.status === "serving");
+    async function updateDashboardUI() {
+        let ticketData = typeof getTickets === "function" ? await getTickets() : [];
 
-            if (current) {
-                current.status = "served";
-            }
-
-            let nextTicket = ticketData.find(ticket => ticket.status === "waiting");
-
-            if (nextTicket) {
-                nextTicket.status = "serving";
-            }
-
-            saveTicket(ticketData);
-            updateDashboardUI();
-        });
-    }
-
-    function updateDashboardUI() {
-        let ticketData = getTickets();
-
-        let servingTicket = ticketData.find(ticket => ticket.status === "serving");
-        let waitingTicket = ticketData.filter(ticket => ticket.status === "waiting");
-        let servedTicket = ticketData.filter(ticket => ticket.status === "served");
+        let servingTicket = ticketData.find(ticket => (ticket.status || "").toLowerCase() === "serving");
+        let waitingTickets = ticketData.filter(ticket => (ticket.status || "").toLowerCase() === "waiting");
+        let servedTickets = ticketData.filter(ticket => 
+            (ticket.status || "").toLowerCase() === "completed" || (ticket.status || "").toLowerCase() === "served"
+        );
 
         if (servingTicket) {
-            currServingCard.textContent = servingTicket.id;
-            currServingName.textContent = servingTicket.serviceName;
+            currServingCard.textContent = servingTicket.ticketNumber || servingTicket.id;
+            currServingName.textContent = servingTicket.department || servingTicket.serviceName;
         } else {
             currServingCard.textContent = "None";
             currServingName.textContent = "No Active Service";
         }
 
-        waitingCard.textContent = waitingTicket.length;
-        queueCount.textContent = `${waitingTicket.length} Waiting`;
-        servedCard.textContent = servedTicket.length;
+        waitingCard.textContent = waitingTickets.length;
+        queueCount.textContent = `${waitingTickets.length} Waiting`;
+        servedCard.textContent = servedTickets.length;
 
         queueList.innerHTML = "";
 
-        if (waitingTicket.length === 0) {
+        if (waitingTickets.length === 0) {
             queueList.innerHTML = `<li class="empty-queue">No students waiting in line</li>`;
         } else {
-            waitingTicket.forEach((ticket) => {
+            waitingTickets.forEach((ticket) => {
                 let queueListItem = document.createElement("li");
                 queueListItem.className = "queue-item";
 
+                let tId = ticket.ticketNumber || ticket.id;
+                let tName = ticket.department || ticket.serviceName;
+
                 queueListItem.innerHTML = `
                     <div class="ticket-info">
-                        <span class="ticket-id">${ticket.id}</span>
-                        <span class="service-name">${ticket.serviceName}</span>
+                        <span class="ticket-id">${tId}</span>
+                        <span class="service-name">${tName}</span>
                     </div>
                 `;
 
@@ -90,11 +75,27 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    window.addEventListener("storage", (e) => {
-        if (e.key === "queueTicket") {
-            updateDashboardUI();
-        }
-    });
+    if (callNextBtn) {
+        callNextBtn.addEventListener("click", async () => {
+            let ticketData = typeof getTickets === "function" ? await getTickets() : [];
+            
+            let currentServing = ticketData.find(ticket => (ticket.status || "").toLowerCase() === "serving");
+            if (currentServing && currentServing._id) {
+                await updateTicketStatusOnBackend(currentServing._id, "Completed");
+            }
 
-    updateDashboardUI();
+            let nextWaiting = ticketData.find(ticket => (ticket.status || "").toLowerCase() === "waiting");
+            if (nextWaiting && nextWaiting._id) {
+                await updateTicketStatusOnBackend(nextWaiting._id, "Serving");
+            }
+
+            await updateDashboardUI();
+        });
+    }
+
+    await updateDashboardUI();
+
+    setInterval(async () => {
+        await updateDashboardUI();
+    }, 3000);
 });

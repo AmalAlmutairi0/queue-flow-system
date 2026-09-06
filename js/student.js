@@ -1,10 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
     const currentUser = getCurrentUser();
     if (!currentUser) {
         window.location.href = "login.html";
         return;
     }
+
+    let hasNotifiedCurrentTicket = false;
 
     const navToggle = document.querySelector(".nav-toggle");
     const navLinks = document.querySelector(".nav-links");
@@ -49,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (dismissNotificationBtn && notificationModal) {
         dismissNotificationBtn.addEventListener("click", () => {
             notificationModal.classList.remove("active");
+            hasNotifiedCurrentTicket = true;
         });
     }
 
@@ -64,40 +67,60 @@ document.addEventListener("DOMContentLoaded", () => {
             if (typeof clearCurrentUser === "function") {
                 clearCurrentUser();
             }
+            localStorage.removeItem("active_ticket_num");
             window.location.href = "login.html";
         });
     }
 
-    function restoreActiveStudentTicket() {
-        if (!currentUser) return;
+    async function restoreActiveStudentTicket() {
+        if (!currentUser) return false;
 
-        let allTickets = typeof getTickets === "function" ? getTickets() : [];
-        let myActiveTicket = allTickets.find(ticket =>
-            (ticket.studentEmail === currentUser.email || (currentUser.id && ticket.studentId === currentUser.id)) &&
-            (ticket.status === "waiting" || ticket.status === "serving")
-        );
+
+        let savedTicketNum = localStorage.getItem("active_ticket_num");
+        let allTickets = typeof getTickets === "function" ? await getTickets() : [];
+        let myActiveTicket = null;
+
+        if (savedTicketNum) {
+            myActiveTicket = allTickets.find(ticket => (ticket.ticketNumber === savedTicketNum || ticket.id === savedTicketNum));
+        }
+
+        if (!myActiveTicket) {
+            myActiveTicket = allTickets.find(ticket =>
+                (ticket.studentEmail === currentUser.email || (currentUser.id && ticket.studentId === currentUser.id)) &&
+                ((ticket.status || "").toLowerCase() !== "cancelled")
+            );
+        }
 
         if (myActiveTicket) {
-            if (sidebarTicketNum) sidebarTicketNum.textContent = myActiveTicket.id;
-            if (sidebarTicketName) sidebarTicketName.textContent = myActiveTicket.serviceName;
-            if (liveTicketNum) liveTicketNum.textContent = myActiveTicket.id;
-            if (liveServiceName) liveServiceName.textContent = myActiveTicket.serviceName;
+            let ticketId = myActiveTicket.ticketNumber || myActiveTicket.id;
+            let service = myActiveTicket.department || myActiveTicket.serviceName;
 
-            showScreen(ticketScreen);
-            refreshStudentTicketUI();
+
+            localStorage.setItem("active_ticket_num", ticketId);
+
+            if (sidebarTicketNum) sidebarTicketNum.textContent = ticketId;
+            if (sidebarTicketName) sidebarTicketName.textContent = service;
+            if (liveTicketNum) liveTicketNum.textContent = ticketId;
+            if (liveServiceName) liveServiceName.textContent = service;
+
+            await showScreen(ticketScreen);
+            await refreshStudentTicketUI();
+            return true;
         }
+
+        return false;
     }
 
-    function updateServicesWaitingCount() {
-        let allTickets = typeof getTickets === "function" ? getTickets() : [];
+    async function updateServicesWaitingCount() {
+        let allTickets = typeof getTickets === "function" ? await getTickets() : [];
 
         serviceCard.forEach((card) => {
             let prefix = card.dataset.prefix;
             let serviceName = card.dataset.service;
 
             let waitingTickets = allTickets.filter(ticket => 
-                (ticket.prefix === prefix || ticket.serviceName === serviceName) && 
-                ticket.status === "waiting"
+                (ticket.prefix === prefix || ticket.department === serviceName || ticket.serviceName === serviceName) && 
+                (ticket.status || "").toLowerCase() === "waiting"
             );
 
             let count = waitingTickets.length;
@@ -115,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function showScreen(targetScreen) {
+    async function showScreen(targetScreen) {
         if (!targetScreen) return;
 
         if (servicesScreen) servicesScreen.classList.add("hidden");
@@ -131,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         switch(targetScreen) {
             case servicesScreen:
                 if (stepNodeOne) stepNodeOne.classList.add("active");
-                updateServicesWaitingCount();
+                await updateServicesWaitingCount();
                 break;
             case confirmationScreen:
                 if (stepNodeTwo) stepNodeTwo.classList.add("active");
@@ -148,59 +171,55 @@ document.addEventListener("DOMContentLoaded", () => {
         return document.querySelector(".service-card.selected");
     }
 
-    function refreshStudentTicketUI() {
-        updateServicesWaitingCount();
+    async function refreshStudentTicketUI() {
+        await updateServicesWaitingCount();
 
-        let activeTicketId = sidebarTicketNum ? sidebarTicketNum.textContent : "";
+        let activeTicketId = localStorage.getItem("active_ticket_num") || (sidebarTicketNum ? sidebarTicketNum.textContent : "");
         if (!activeTicketId || activeTicketId === "—") return;
 
-        let allTickets = typeof getTickets === "function" ? getTickets() : [];
-        let myTicket = allTickets.find(ticket => ticket.id === activeTicketId);
+        let allTickets = typeof getTickets === "function" ? await getTickets() : [];
+        let myTicket = allTickets.find(ticket => (ticket.ticketNumber === activeTicketId || ticket.id === activeTicketId));
 
         if (!myTicket) return;
 
-        let servingTicket = allTickets.find(ticket => ticket.serviceName === myTicket.serviceName && ticket.status === "serving");
-
-        if (liveNowServing) {
-            if (servingTicket) {
-                liveNowServing.textContent = servingTicket.id;
-            } else {
-                liveNowServing.textContent = "None";
-            }
-        }
-
-        let activeTickets = allTickets.filter(ticket => 
-            ticket.serviceName === myTicket.serviceName && 
-            (ticket.status === "waiting" || ticket.status === "serving")
+        let ticketDepartment = myTicket.department || myTicket.serviceName;
+        
+        let servingTicket = allTickets.find(ticket => 
+            (ticket.department === ticketDepartment || ticket.serviceName === ticketDepartment) && 
+            (ticket.status || "").toLowerCase() === "serving"
         );
 
-        let myIndex = activeTickets.findIndex(ticket => ticket.id === myTicket.id);
-
-        let peopleAhead = 0;
-        if (myIndex >= 0) {
-            peopleAhead = myIndex;
+        if (liveNowServing) {
+            liveNowServing.textContent = servingTicket ? (servingTicket.ticketNumber || servingTicket.id) : "None";
         }
 
-        if (myTicket.status === "serving") {
+        let waitingTickets = allTickets.filter(ticket => 
+            (ticket.department === ticketDepartment || ticket.serviceName === ticketDepartment) && 
+            (ticket.status || "").toLowerCase() === "waiting"
+        );
+
+        let myTicketMongoId = myTicket._id || myTicket.id;
+        let myIndex = waitingTickets.findIndex(ticket => (ticket._id === myTicketMongoId || ticket.ticketNumber === myTicket.ticketNumber));
+        
+        let peopleAhead = myIndex > 0 ? myIndex : 0;
+        let currentStatus = (myTicket.status || "").toLowerCase();
+
+        if (currentStatus === "serving") {
             if (liveCount) liveCount.textContent = "0";
             if (liveWaitTime) liveWaitTime.textContent = "It's your turn!";
             if (liveStatusText) liveStatusText.textContent = "Serving";
             if (sidebarTicketStatus) sidebarTicketStatus.textContent = "Serving";
 
-            if (!myTicket.notified) {
-                myTicket.notified = true;
-                if (typeof saveTicket === "function") saveTicket(allTickets);
-                
-                if (notificationModal) {
-                    notificationModal.classList.add("active");
-                }
+            if (!hasNotifiedCurrentTicket && notificationModal) {
+                notificationModal.classList.add("active");
             }
-        } else if (myTicket.status === "waiting") {
+        } else if (currentStatus === "waiting") {
             if (liveCount) liveCount.textContent = peopleAhead;
-            if (liveWaitTime) liveWaitTime.textContent = `Estimated wait: ~${peopleAhead * 5} mins`;
+            if (liveWaitTime) liveWaitTime.textContent = peopleAhead > 0 ? `~${peopleAhead * 5} mins wait` : "You are next!";
             if (liveStatusText) liveStatusText.textContent = "Waiting";
             if (sidebarTicketStatus) sidebarTicketStatus.textContent = "Waiting";
-        } else if (myTicket.status === "served") {
+        } else if (currentStatus === "completed" || currentStatus === "served") {
+            if (liveCount) liveCount.textContent = "0";
             if (liveStatusText) liveStatusText.textContent = "Completed";
             if (sidebarTicketStatus) sidebarTicketStatus.textContent = "Completed";
             if (liveWaitTime) liveWaitTime.textContent = "Service completed";
@@ -209,8 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let progressSegments = document.querySelectorAll(".progress-segments .segment");
         if (progressSegments.length > 0) {
             let activeCount = 1;
-
-            if (myTicket.status === "serving") {
+            if (currentStatus === "serving" || currentStatus === "completed" || currentStatus === "served") {
                 activeCount = 5;
             } else if (peopleAhead === 0) {
                 activeCount = 4;
@@ -237,6 +255,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (activeCard) {
             activeCard.classList.remove("selected");
         }
+        hasNotifiedCurrentTicket = false;
+        localStorage.removeItem("active_ticket_num");
         if (sidebarTicketNum) sidebarTicketNum.textContent = "—";
         if (sidebarTicketName) sidebarTicketName.textContent = "Pick a service to begin";
         if (sidebarTicketStatus) sidebarTicketStatus.textContent = "Not Started";
@@ -252,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (joinQueueBtn) {
-        joinQueueBtn.addEventListener("click", () => {
+        joinQueueBtn.addEventListener("click", async () => {
             let selectedCard = getSelectedCard();
 
             if (selectedCard) {
@@ -266,18 +286,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (typeof saveCounters === "function") saveCounters(counterObject);
 
                 let ticketObject = {
-                    id: generatedTicket,
-                    serviceName: serviceName,
+                    ticketNumber: generatedTicket,
+                    department: serviceName,
                     prefix: prefix,
-                    status: "waiting",
+                    status: "Waiting",
                     notified: false,
                     studentEmail: currentUser.email,
                     studentId: currentUser.id || null
                 };
 
-                let allTickets = typeof getTickets === "function" ? getTickets() : [];
-                allTickets.push(ticketObject);
-                if (typeof saveTicket === "function") saveTicket(allTickets);
+                hasNotifiedCurrentTicket = false;
+                localStorage.setItem("active_ticket_num", generatedTicket);
+
+                if (typeof addTicketToBackend === "function") {
+                    await addTicketToBackend(ticketObject);
+                }
 
                 if (ticketName) ticketName.textContent = serviceName;
                 if (ticketNumber) ticketNumber.textContent = generatedTicket;
@@ -286,9 +309,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (sidebarTicketNum) sidebarTicketNum.textContent = generatedTicket;
                 if (sidebarTicketName) sidebarTicketName.textContent = serviceName;
 
-                refreshStudentTicketUI();
-
-                showScreen(confirmationScreen);
+                await refreshStudentTicketUI();
+                await showScreen(confirmationScreen);
             } else {
                 alert("Please select a service first!");
             }
@@ -296,16 +318,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (statusViewBtn) {
-        statusViewBtn.addEventListener("click", () => {
-            showScreen(ticketScreen);
-            refreshStudentTicketUI();
+        statusViewBtn.addEventListener("click", async () => {
+            await showScreen(ticketScreen);
+            await refreshStudentTicketUI();
         });
     }
 
     if (backToServicesBtn) {
-        backToServicesBtn.addEventListener("click", () => {
+        backToServicesBtn.addEventListener("click", async () => {
             resetTicketData();
-            showScreen(servicesScreen);
+            await showScreen(servicesScreen);
         });
     }
 
@@ -322,33 +344,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (confirmationCancelBtn) {
-        confirmationCancelBtn.addEventListener("click", () => {
-            let activeTicketId = sidebarTicketNum ? sidebarTicketNum.textContent : "";
-
-            if (activeTicketId && activeTicketId !== "—") {
-                let allTickets = typeof getTickets === "function" ? getTickets() : [];
-                let updatedTickets = allTickets.map(ticket => {
-                    if (ticket.id === activeTicketId) {
-                        return { ...ticket, status: "cancelled" };
-                    }
-                    return ticket;
-                });
-
-                if (typeof saveTicket === "function") saveTicket(updatedTickets);
-            }
-
+        confirmationCancelBtn.addEventListener("click", async () => {
             if (cancelDisplay) cancelDisplay.classList.remove("active");
             resetTicketData();
-            showScreen(servicesScreen);
+            await showScreen(servicesScreen);
         });
     }
 
-    updateServicesWaitingCount();
-    restoreActiveStudentTicket();
 
-    window.addEventListener("storage", (event) => {
-        if (event.key === "queueTicket") {
-            refreshStudentTicketUI();
-        }
-    });
+    const hasActiveTicket = await restoreActiveStudentTicket();
+
+    if (!hasActiveTicket) {
+        await showScreen(servicesScreen);
+    }
+
+    setInterval(async () => {
+        await refreshStudentTicketUI();
+    }, 3000);
 });

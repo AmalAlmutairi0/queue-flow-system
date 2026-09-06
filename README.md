@@ -1,56 +1,71 @@
-# Student Queue Management System (Academic Project)
+# 🚀 QueueFlow – Virtual Queue Management System
 
-A dynamic web-based Queue Management System engineered to streamline student service workflows and mitigate wait times within campus administration facilities. The application enables students to request virtual service tickets and track queue progress in real-time, while providing administrative staff with dedicated controls to manage queue flow.
+A dynamic, full-stack web application designed to streamline student customer flow and eliminate physical waiting lines. **QueueFlow** provides real-time ticket tracking for students and an intuitive service queue control dashboard for staff members.
 
----
-
-## Key Features
-
-* **Multi-Role Authentication:** Role-based access control supporting separate workflows for Students and Staff members.
-* **Service Queue Allocation:** Dynamic ticket generation based on departmental service prefixes (e.g., Advising, Finance, IT Support).
-* **Real-time Queue Tracking:** Live updates reflecting current serving status, active queue length, and estimated waiting times.
-* **Session & State Persistence:** Automatic session restoration for active tickets upon page reload using local storage handlers.
-* **Staff Service Dashboard:** Comprehensive control panel for staff members to call next tickets, complete requests, and monitor waitlist statistics.
-* **Cross-Tab Synchronization:** Synchronized data state across multiple browser tabs utilizing storage event listeners.
+> 🛠️ **Project Status:** In Active Development (Present)
 
 ---
 
-## Technical Architecture & Tech Stack
+## 🌟 Key Features
 
-The system is built as a lightweight, single-page application (SPA) style modular client-side architecture without external framework dependencies:
+### 🎓 Student Portal
+* **Service Selection:** Choose from multiple department queues (Academic Advising, Financial Aid, IT Support, Records & Transcripts).
+* **Instant Ticket Generation:** Generates prefixed sequential tickets (e.g., `A-012`, `F-005`) with estimated wait times.
+* **Real-time Queue Tracking:** Dynamic state management displaying live status updates, current serving numbers, and people ahead in line.
+* **Session Persistence:** Integrated local state management (`localStorage`) and backend APIs ensuring ticket state continuity across page refreshes.
+* **Interactive Turn Notifications:** Modal notifications alerting students immediately when their turn arrives.
+* **Self-Service Cancellation:** Ability to safely cancel or exit a queue spot with confirmation dialogs.
 
-* **Frontend Layout & Styling:** HTML5, CSS3 (Flexbox & Responsive Grid Design).
-* **Application Logic:** JavaScript (ES6+ native asynchronous patterns & DOM manipulation).
-* **Data Persistence:** Client-side Web Storage APIs (`localStorage` for entities and ticket persistence, `sessionStorage` for active session state).
+### 💼 Staff & Admin Portal
+* **Queue Control Center:** Manage active queues per service line.
+* **Status Lifecycle Management:** Update ticket states through `Waiting` ➔ `Serving` ➔ `Completed` / `Cancelled`.
+* **Live Counter Synchronization:** Prevent ticket collisions and handle real-time ticket generation logic server-side.
 
 ---
 
-## Directory Structure
+## 🛠️ Tech Stack
+
+* **Frontend:** HTML5, CSS3 (Custom CSS Variables, Flexbox, CSS Grid), Vanilla JavaScript (ES6+), FontAwesome Icons.
+* **Backend:** Node.js, Express.js.
+* **Database:** MongoDB.
+* **State & Persistence:** LocalStorage API, RESTful APIs, Fetch API.
+
+---
+
+## 📂 Project Architecture
 
 ```text
-├── index.html / login.html   # User login interface
-├── register.html             # Multi-role account registration interface
-├── student-queue.html        # Student dashboard and live tracking view
-├── staff-dashboard.html      # Administrative staff management view
 ├── css/
-│   └── styles.css            # System design system and responsive layout styling
-└── js/
-    ├── auth-utils.js         # Authentication helpers & session storage abstraction
-    ├── queue-data.js         # Queue state management, ticket storage & counter state
-    ├── login.js              # Login submission handlers & role-based routing
-    ├── register.js           # User registration logic & form validation
-    ├── student.js            # Live student queue workflow & auto-restore handlers
-    └── staff.js              # Staff queue management & UI state controller
+│   ├── global.css        # Global variables, typography, and base styles
+│   └── student.css       # Student interface & modal component styles
+├── js/
+│   ├── auth-utils.js     # User session management utilities
+│   ├── queue-data.js     # Data layer & API call helpers
+│   └── student.js        # Student UI logic & queue polling
+├── student-queue.html    # Student main portal view
+└── README.md             # Project documentation
 
 
-[ User / Student ]                   [ Queue System ]                   [ Staff Dashboard ]
-        │                                   │                                    │
-        ├─── 1. Authenticate / Login ──────►│                                    │
-        ├─── 2. Request Service Ticket ────►│                                    │
-        │                                   ├─── 3. Allocate Ticket ID ─────────►│
-        │                                   │    & Update Department Queue       │
-        │                                   │                                    ├── 4. Call Next Ticket
-        │◄── 5. Live Queue Status Update ───┼◄───────────────────────────────────┤
-        │    (Serving / Active Waiting)     │                                    │
-        │                                   │                                    ├── 6. Mark Complete / Skip
-        │◄── 7. Ticket Finalization ────────┼◄───────────────────────────────────┤
+🚀 Getting Started
+Clone the repository:
+
+Bash
+git clone [https://github.com/AmalAlmutairi0/queue-flow-system.git](https://github.com/AmalAlmutairi0/queue-flow-system.git)
+Open the project:
+Simply launch student-queue.html in your browser (or use a Live Server extension in VS Code).
+
+Backend Setup:
+Ensure your API server is running to support getTickets(), addTicketToBackend(), and counter synchronization endpoints.
+
+📌 Roadmap
+[x] Student Single Page Architecture (SPA)
+
+[x] Local state persistence on page refresh
+
+[x] Ticket progress visualization and real-time status polling
+
+[ ] Centralized server-side ticket counter generation
+
+[ ] WebSocket integration (Socket.io) for real-time live push updates
+
+[ ] Advanced analytical dashboard for staff response time metrics

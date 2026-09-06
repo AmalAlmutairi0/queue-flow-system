@@ -160,7 +160,6 @@
     color: var(--text-muted);
 }
 
-/* Sidebar base styling (shown at desktop breakpoint below) */
 .brand {
     display: flex;
     align-items: center;

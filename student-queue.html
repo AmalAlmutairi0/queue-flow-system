@@ -66,7 +66,8 @@
             </div>
         </aside>
 
-        <main class="join-queue" id="services-screen">
+
+        <main class="join-queue hidden" id="services-screen">
             <div class="join-description">
                 <h2>Available Services</h2>
                 <p>Select a service to join the virtual queue</p>
@@ -83,8 +84,8 @@
                     </div>
                 </div>
                 <div class="waiting">
-                    <span class="person-number">4 waiting</span>
-                    <span class="waiting-time">~20 min wait</span>
+                    <span class="person-number">...</span>
+                    <span class="waiting-time">...</span>
                 </div>
             </div>
 
@@ -99,8 +100,8 @@
                     </div>
                 </div>
                 <div class="waiting">
-                    <span class="person-number">2 waiting</span>
-                    <span class="waiting-time">~10 min wait</span>
+                    <span class="person-number">...</span>
+                    <span class="waiting-time">...</span>
                 </div>
             </div>
 
@@ -115,8 +116,8 @@
                     </div>
                 </div>
                 <div class="waiting">
-                    <span class="person-number">1 waiting</span>
-                    <span class="waiting-time">~5 min wait</span>
+                    <span class="person-number">...</span>
+                    <span class="waiting-time">...</span>
                 </div>
             </div>
 
@@ -131,8 +132,8 @@
                     </div>
                 </div>
                 <div class="waiting">
-                    <span class="person-number">6 waiting</span>
-                    <span class="waiting-time">~30 min wait</span>
+                    <span class="person-number">...</span>
+                    <span class="waiting-time">...</span>
                 </div>
             </div>
 
@@ -151,8 +152,8 @@
                 </div>
 
                 <div class="summary-details">
-                    <h1 class="ticket-number-display" id="conf-ticket-num">A-012</h1>
-                    <p class="service-name-display" id="conf-service-name">Academic Advising</p>
+                    <h1 class="ticket-number-display" id="conf-ticket-num">—</h1>
+                    <p class="service-name-display" id="conf-service-name">—</p>
                 </div>
 
                 <button class="status-btn" id="view-status-btn">View Queue Status</button>
@@ -167,12 +168,12 @@
             <div class="ticket-card">
                 <div class="main-info">
                     <span class="label">YOUR TICKET NUMBER</span>
-                    <h1 class="ticket-number-display" id="live-ticket-num">A-012</h1>
+                    <h1 class="ticket-number-display" id="live-ticket-num">—</h1>
                 </div>
 
                 <div class="ticket-status-card">
                     <div class="stat-box">
-                        <span class="stat-value" id="live-ahead-count">3</span>
+                        <span class="stat-value" id="live-ahead-count">...</span>
                         <span class="stat-label">People Ahead of You</span>
                     </div>
 
@@ -184,22 +185,22 @@
                             <div class="segment"></div>
                             <div class="segment"></div>
                         </div>
-                        <span class="wait-time-display" id="live-wait-time">Estimated wait: ~15 mins</span>
+                        <span class="wait-time-display" id="live-wait-time">Calculating wait time...</span>
                     </div>
                 </div>
 
                 <div class="all-info">
                     <div class="info-item">
                         <span class="label">Service</span>
-                        <span class="value" id="live-service-name">Academic Advising</span>
+                        <span class="value" id="live-service-name">—</span>
                     </div>
                     <div class="info-item">
                         <span class="label">Now Serving</span>
-                        <span class="value serving-ticket-display" id="live-now-serving">A-009</span>
+                        <span class="value serving-ticket-display" id="live-now-serving">—</span>
                     </div>
                     <div class="info-item">
                         <span class="label">Status</span>
-                        <span class="value status-badge" id="live-status-text">Waiting</span>
+                        <span class="value status-badge" id="live-status-text">...</span>
                     </div>
                 </div>
 
