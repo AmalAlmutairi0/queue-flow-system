@@ -31,19 +31,33 @@ A dynamic, full-stack web application designed to streamline student customer fl
 * **State & Persistence:** LocalStorage API, RESTful APIs, Fetch API.
 
 ---
-
 ## 📂 Project Architecture
-
-```text
 ├── css/
-│   ├── global.css        # Global variables, typography, and base styles
-│   └── student.css       # Student interface & modal component styles
+│   ├── global.css          # Global variables, typography, and base layout
+│   ├── landing.css         # Styling for the main landing page
+│   ├── login.css           # Authentication page styling
+│   ├── register.css        # Student registration page styling
+│   ├── staff.css           # Staff dashboard controls & layout styles
+│   └── student.css         # Student portal and queue modal styling
+│
 ├── js/
-│   ├── auth-utils.js     # User session management utilities
-│   ├── queue-data.js     # Data layer & API call helpers
-│   └── student.js        # Student UI logic & queue polling
-├── student-queue.html    # Student main portal view
-└── README.md             # Project documentation
+│   ├── auth-utils.js       # Session handling and auth helper functions
+│   ├── login.js            # Login form submission and validation logic
+│   ├── queue-data.js       # Backend API calls and data fetching handlers
+│   ├── register.js         # Student registration form handlers
+│   ├── staff.js            # Staff queue management and status actions
+│   └── student.js          # Student ticket state, polling, and UI handlers
+│
+├── server/
+│   ├── models/             # Database schemas (e.g., User, Ticket models)
+│   ├── node_modules/       # Node.js server dependencies
+│   └── server.js           # Main Express server entry point
+│
+├── index.html              # System landing page
+├── login.html              # User login page
+├── register.html           # Account registration page
+├── staff-dashboard.html    # Staff management dashboard
+└── student-queue.html      # Student queue interactive portal
 
 
 🚀 Getting Started
@@ -56,16 +70,3 @@ Simply launch student-queue.html in your browser (or use a Live Server extension
 
 Backend Setup:
 Ensure your API server is running to support getTickets(), addTicketToBackend(), and counter synchronization endpoints.
-
-📌 Roadmap
-[x] Student Single Page Architecture (SPA)
-
-[x] Local state persistence on page refresh
-
-[x] Ticket progress visualization and real-time status polling
-
-[ ] Centralized server-side ticket counter generation
-
-[ ] WebSocket integration (Socket.io) for real-time live push updates
-
-[ ] Advanced analytical dashboard for staff response time metrics
